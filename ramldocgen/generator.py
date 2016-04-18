@@ -91,7 +91,10 @@ class HTMLNode(object):
                 cjoin = ''
             br = '\n' if self._pretty and not self.is_onlytext() else ''
             if self._debug:
-                print("<{0}>{1}</{0}>".format(self.name, cjoin.join([c.render(self._indent + 1, self._pretty) for c in self.children]), attrib, indent, br, indent if br != '' else ''), file=sys.stderr)
+                try:
+                    print("<{0}>{1}</{0}>".format(self.name, cjoin.join([c.render(self._indent + 1, self._pretty) for c in self.children]), attrib, indent, br, indent if br != '' else ''), file=sys.stderr)
+                except SyntaxError:
+                    print >>sys.stderr,"<{0}>{1}</{0}>".format(self.name, cjoin.join([c.render(self._indent + 1, self._pretty) for c in self.children]), attrib, indent, br, indent if br != '' else '')
             return "{3}<{0}{2}>{4}{1}{4}{5}</{0}>".format(self.name, cjoin.join([c.render(self._indent + 1, self._pretty) for c in self.children]), attrib, indent, br, indent if br != '' else '')
 
 

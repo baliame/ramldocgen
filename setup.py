@@ -4,7 +4,7 @@ description = 'Python based command line interface tool for generating HTML cont
 
 setup(
     name='ramldocgen',
-    version='1.0.0b1',
+    version='1.0.0b2',
     description=description,
     long_description=description,
     url='https://github.com/baliame/ramldocgen',
@@ -21,6 +21,8 @@ setup(
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Topic :: Documentation',
+        'Topic :: Software Development :: Documentation',
         'Topic :: Utilities',
     ],
     keywords='raml api documentation generator',
