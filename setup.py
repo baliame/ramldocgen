@@ -4,7 +4,7 @@ description = 'Python based command line interface tool for generating HTML cont
 
 setup(
     name='ramldocgen',
-    version='1.0.0rc1',
+    version='1.0.0',
     description=description,
     long_description=description,
     url='https://github.com/baliame/ramldocgen',
