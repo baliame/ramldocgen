@@ -1,6 +1,3 @@
-from __future__ import print_function
-from __future__ import unicode_literals
-
 from xml.sax.saxutils import escape
 import pyraml.parser as ramlparser
 from .inlines import highlight_inline_js, api_doc_inline_css
@@ -36,13 +33,13 @@ class HTMLNode(object):
         self._debug = False
 
     def append(self, tag):
-        if isinstance(tag, str) or isinstance(tag, int):
+        if not isinstance(tag, HTMLNode):
             tag = HTMLText(str(tag))
         self.children.append(tag)
         return tag
 
     def prepend(self, tag):
-        if isinstance(tag, str) or isinstance(tag, int):
+        if not isinstance(tag, HTMLNode):
             tag = HTMLText(str(tag))
         self.children.insert(0, tag)
         return tag

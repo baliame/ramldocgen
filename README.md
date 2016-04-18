@@ -4,7 +4,7 @@ A python implementation of generating a concise and easy to use documentation pa
 
 ## Installation
 
-The tool has been developed and tested with Python 3.5. It is not guaranteed to function with Python 2.7.
+The tool has been developed with Python 3.5 and has been tested with Python 3.3 and Python 3.4. Python 2.7 will not be supported due to major differences in how unicode strings are handled across the two major versions.
 
 Use pip to install the tool.
 
