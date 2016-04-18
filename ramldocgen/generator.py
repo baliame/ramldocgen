@@ -1,12 +1,12 @@
+from __future__ import print_function
+from __future__ import unicode_literals
+
 from xml.sax.saxutils import escape
 import pyraml.parser as ramlparser
 from .inlines import highlight_inline_js, api_doc_inline_css
 from collections import OrderedDict
 import re
 import sys
-
-from __future__ import print_function
-from __future__ import unicode_literals
 
 no_short_close = ['div', 'span', 'script']
 
