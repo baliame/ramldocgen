@@ -5,6 +5,8 @@ from collections import OrderedDict
 import re
 import sys
 
+from __future__ import print_function
+from __future__ import unicode_literals
 
 no_short_close = ['div', 'span', 'script']
 
@@ -91,10 +93,7 @@ class HTMLNode(object):
                 cjoin = ''
             br = '\n' if self._pretty and not self.is_onlytext() else ''
             if self._debug:
-                try:
-                    print("<{0}>{1}</{0}>".format(self.name, cjoin.join([c.render(self._indent + 1, self._pretty) for c in self.children]), attrib, indent, br, indent if br != '' else ''), file=sys.stderr)
-                except SyntaxError:
-                    print >>sys.stderr,"<{0}>{1}</{0}>".format(self.name, cjoin.join([c.render(self._indent + 1, self._pretty) for c in self.children]), attrib, indent, br, indent if br != '' else '')
+                print("<{0}>{1}</{0}>".format(self.name, cjoin.join([c.render(self._indent + 1, self._pretty) for c in self.children]), attrib, indent, br, indent if br != '' else ''), file=sys.stderr)
             return "{3}<{0}{2}>{4}{1}{4}{5}</{0}>".format(self.name, cjoin.join([c.render(self._indent + 1, self._pretty) for c in self.children]), attrib, indent, br, indent if br != '' else '')
 
 
