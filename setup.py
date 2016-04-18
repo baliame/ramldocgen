@@ -4,7 +4,7 @@ description = 'Python based command line interface tool for generating HTML cont
 
 setup(
     name='ramldocgen',
-    version='1.0.0a1',
+    version='1.0.0b1',
     description=description,
     long_description=description,
     url='https://github.com/baliame/ramldocgen',
@@ -12,7 +12,7 @@ setup(
     author_email='akos.toth@cheppers.com',
     license='MIT',
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 4 - Beta',
         'Environment :: Console',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
@@ -30,6 +30,8 @@ setup(
         "click"
     ],
     entry_points={
-        'console_scripts': ['ramldocgen=ramldocgen.ramldocgen:cli'],
+        'console_scripts': [
+            'ramldocgen=ramldocgen.ramldocgen:cli',
+        ],
     }
 )
