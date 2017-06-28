@@ -4,6 +4,7 @@ from .inlines import highlight_inline_js, api_doc_inline_css
 from collections import OrderedDict
 import re
 import sys
+import json
 
 no_short_close = ['div', 'span', 'script']
 
@@ -422,7 +423,7 @@ class Generator(object):
                                     ctypec = codec.body[ctype]
                                     example = ctypec.example
                                     contents.append(HTMLNode('p')).append(HTMLNode('strong')).append('Type: {0}'.format(ctype))
-                                    contents.append(HTMLNode('pre')).append(HTMLNode('code')).append(example)
+                                    contents.append(HTMLNode('pre')).append(HTMLNode('code')).append(json.dumps(example, sort_keys=True, indent=4))
 
         if self.raml.securitySchemes is not None and len(self.raml.securitySchemes) > 0:
             legend_security_wrapper = legend.append(HTMLNode('li'))
@@ -517,6 +518,6 @@ class Generator(object):
                                     ctypec = codec.body[ctype]
                                     example = ctypec.example
                                     contents.append(HTMLNode('p')).append(HTMLNode('strong')).append('Type: {0}'.format(ctype))
-                                    contents.append(HTMLNode('pre')).append(HTMLNode('code')).append(example)
+                                    contents.append(HTMLNode('pre')).append(HTMLNode('code')).append(json.dumps(example, sort_keys=True, indent=4))
 
         return doc.render(pretty=False, indent=0)
