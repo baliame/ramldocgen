@@ -401,6 +401,15 @@ class Generator(object):
                                 param_elem.append(HTMLNode('em')).append('({0})'.format('string' if paramc.type is None else paramc.type))
                                 param_elem.append(HTMLNode('p')).append(paramc.description)
 
+                        if methodc.body is not None and len(methodc.body) > 0:
+                            contents.append(HTMLNode('h3')).append('Body')
+                            for ctype in methodc.body:
+                                ctypec = methodc.body[ctype]
+                                example = ctypec.example
+                                contents.append(HTMLNode('p')).append(HTMLNode('strong')).append('Type: {0}'.format(ctype))
+                                contents.append(HTMLNode('pre')).append(HTMLNode('code')).append(json.dumps(example, sort_keys=True, indent=4))
+
+
                     # Create the response tab if a response description exists.
                     if methodc.responses is not None and len(methodc.responses) > 0:
                         if first_tab:
