@@ -403,11 +403,29 @@ class Generator(object):
 
                         if methodc.body is not None and len(methodc.body) > 0:
                             contents.append(HTMLNode('h3')).append('Body')
+                            
                             for ctype in methodc.body:
                                 ctypec = methodc.body[ctype]
                                 example = ctypec.example
+                                schema = ctypec.schema
                                 contents.append(HTMLNode('p')).append(HTMLNode('strong')).append('Type: {0}'.format(ctype))
-                                contents.append(HTMLNode('pre')).append(HTMLNode('code')).append(json.dumps(example, sort_keys=True, indent=4))
+
+                                if schema is not None:
+                                    contents.append(HTMLNode('p')).append(HTMLNode('strong')).append('Schema')
+                                    param_list = contents.append(HTMLNode('ul'))
+                                    for param in schema:
+                                        param_name = param_list.append(HTMLNode('li'))
+                                        param_name.append(HTMLNode('strong')).append(param)
+
+                                        paramDefinition = dict(schema[param])
+                                        paramDesc = 'N/A' if 'description' not in paramDefinition else paramDefinition['description']
+                                        paramType = 'string' if 'type' not in paramDefinition else paramDefinition['type']
+                                        paramRequired = 'required' if ('required' in paramDefinition) and (paramDefinition['required'] is True) else 'optional'
+                                        param_name.append(HTMLNode('p')).append('({0}, {1}): {2}'.format(paramType, paramRequired, paramDesc))
+                                        
+                                if example is not None:
+                                    contents.append(HTMLNode('p')).append(HTMLNode('strong')).append('Example')
+                                    contents.append(HTMLNode('pre')).append(HTMLNode('code')).append(json.dumps(example, sort_keys=True, indent=4))
 
 
                     # Create the response tab if a response description exists.
